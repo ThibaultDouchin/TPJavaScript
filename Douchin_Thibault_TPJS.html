@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+  <title>TP JavaScript - Douchin Thibault </title>
+  <meta charset=UTF-8>
+  <script type="text/javascript">
+	var tab = [4, 675, 32, 87, 9837, 364, 7492, 45, 345, 324, 374, 8364, 5967, 12, 483, 8573, 659, 365, 9573, 309];
+	
+	function quiEstLeNombreLePlusGrand(a, b) {
+		if(a > b)
+		{
+			return a;
+		}
+		else if(b > a) 
+		{
+			return b;
+		}
+	}
+	
+	function aleatoireNombre(a) {
+		return Math.floor(Math.random() * (a - 0 + 1)) + 0; //Fonction aléatoire entre 0 et l'argument a
+	}
+	
+	function affectation(a, b) {
+		tab[a] = b;
+	}
+	
+	function jeu() {
+		var cpt = 0;
+		var somme = 0;
+		
+		while(cpt<5)
+		{
+			var nombre1 = aleatoireNombre(tab.length);	//On appelle la fonction aleatoireNombre et on lui affecte la taille de tab comme argument
+			var nombre2 = aleatoireNombre(tab.length);
+			cpt++;
+			
+			if(nombre1 == nombre2)		//Si le premier nombre aléatoire est égal au deuxième, on affiche c'est perdu
+			{
+				alert("C'est perdu !");
+				return 0;
+			}
+			
+
+				var plug = quiEstLeNombreLePlusGrand(nombre1, nombre2);
+				if (plug == nombre1)
+				{
+					affectation(quiEstLeNombreLePlusGrand, nombre2);
+					tab[nombre1] = nombre1*(-1);
+					tab[nombre2] = nombre2+50;
+				}
+				
+				else if (plug == nombre2)
+				{
+					affectation(quiEstLeNombreLePlusGrand, nombre1);
+					tab[nombre2] = nombre2*(-1);
+					tab[nombre1] = nombre1+50;
+				}
+			
+			
+			/*else   
+			{
+				if (nombre1 > nombre2)
+				{
+					quiEstLeNombreLePlusGrand(nombre1);
+					tab[nombre1] = tab[nombre1*-1];
+					tab[nombre2] = tab[nombre2+50];
+				}
+				else 
+				{
+					quiEstLeNombreLePlusGrand(nombre2);
+					tab[nombre2] = tab[nombre2+50];
+					tab[nombre1] = tab[nombre1*-1];
+				}
+			}*/
+		}
+		
+		for(i=0;i<tab.length-1;i++)  //Pour i allant de 0 à la taille du tableau, on additionne somme à tab de i
+		{
+			somme = somme + tab[i];
+		}
+		
+		alert(somme);   //On affiche somme pour voir qu'on a fait des conneries et passer une heure à pas réussir à les corriger
+		
+		if(somme >= 0)  //Si somme est supérieure ou égale à 0, on affiche c'est gagné
+		{
+			alert("C'est gagné !");
+		}
+		else 			//Sinon on affiche c'est perdu
+		{
+			alert("C'est perdu :(");
+		}
+	}
+		
+  </script>
+</head>
+<body>
+
+<h1>Jeu que j'ai pas compris </h1>
+
+<p> Cliquez sur ce bouton pour jouer : <button onclick ="jeu()">Le Jeu</button></p>
+
+</body>
+</html>
